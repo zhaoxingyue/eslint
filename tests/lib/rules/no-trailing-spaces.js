@@ -383,6 +383,21 @@ ruleTester.run("no-trailing-spaces", rule, {
                     column: 7
                 }
             ]
+        },
+
+        // https://github.com/eslint/eslint/issues/6933
+        {
+            code: "    \nabcdefg ",
+            output: "    \nabcdefg",
+            options: [{skipBlankLines: true}],
+            errors: [
+                {
+                    message: "Trailing spaces not allowed.",
+                    type: "Program",
+                    line: 2,
+                    column: 8
+                }
+            ]
         }
     ]
 });
